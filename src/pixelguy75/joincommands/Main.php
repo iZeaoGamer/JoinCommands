@@ -28,7 +28,7 @@ class Main extends PluginBase implements Listener{
     public function onJoin(PlayerJoinEvent $event){
         if($this->getConfig()->get("enablejoin2") === true){
             $player = $event->getPlayer();
-            foreach($this->getConfig()->get("Join2Command") as $command){
+            foreach($this->getConfig()->get("JoinCommand2") as $command){
                  $this->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{player}", $player->getName(), $command));
             }
         }
