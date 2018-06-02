@@ -3,6 +3,7 @@
 namespace pixelguy75\joincommands;
 
 use pocketmine\command\ConsoleCommandSender;
+use pocketmine\event\player\PlayerPreLoginEvent;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
@@ -16,11 +17,19 @@ class Main extends PluginBase implements Listener{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveDefaultConfig();
     }
-    public function onJoin(PlayerJoinEvent $event){
+    public function onPreLogin(PlayerPreLoginEvent $event){
         if($this->getConfig()->get("enablejoin") === true){
             $player = $event->getPlayer();
             foreach($this->getConfig()->get("JoinCommand") as $command){
                 $this->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{player}", $player->getName(), $command));	
+            }
+        }
+    }
+    public function onJoin(PlayerJoinEvent $event){
+        if($this->getConfig()->get("enablejoin2") === true){
+            $player = $event->getPlayer();
+            foreach($this->getConfig()->get("Join2Command") as $command){
+                 $this->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{player}", $player->getName(), $command));
             }
         }
     }
