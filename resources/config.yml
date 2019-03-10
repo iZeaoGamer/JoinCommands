@@ -4,17 +4,17 @@
 # Command executed when player joins the game;
 enablejoin: true
 JoinCommand: 
-- give {player} 50 1
-- tell {player} You are awesome!
+- mw default OurSpawn
+- mw tp \"{name}\" OurSpawn
 # Command executed when player dies;
-enabledeath: true
+enabledeath: false
 DeathCommand: 
 - say {player} Died again...
 # Command executed when player does /spawn or respawns into the game;
-enablespawn: true
+enablespawn: false
 RespawnCommand: 
 - tell {player} Welcome to spawn!
 # Command executed when player leaves the game;
-enableleave: true
+enableleave: false
 LeaveCommand: 
 - say {player} ragequit from the server!
